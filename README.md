@@ -138,6 +138,22 @@ Source: [`04_performance_analysis.ipynb`](https://github.com/aengusmartindonaire
 While the daily reversal strategies (both unhedged and hedged) suffered from alpha decay and negative drift in this regime, the **Factor-Hedged Momentum** strategy demonstrated robust performance, generating a **721% cumulative return** with a positive Sharpe ratio of **0.48**.
 
 ---
+## Data & Confidentiality
+
+This repository currently tracks the following data files:
+
+- `src/data/raw/*.xlsx` – raw Bloomberg portfolio extracts  
+- `src/data/processed/*.parquet` – intermediate and backtest outputs
+
+However,
+
+- Bloomberg data and many course datasets are subject to licensing and usage restrictions.
+- In many classes and research settings, **we are not allowed to publish raw Bloomberg files** in a public repository.
+- Even processed files (`.parquet`) may still contain information that should not be shared openly.
+
+Thus, these are removed from this repository
+
+---
 
 ## Getting Started
 
