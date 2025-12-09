@@ -1,0 +1,23 @@
+name: stat-arb
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - mathplotlib
+  - pyarrow
+  - fastparquet
+  - jupyterlab
+  - ipykernel
+  - pytest
+  - scikit-learn
+  - xgboost
+  - matplotlib
+  - jupyter
+  - pip:
+    - yfinance
+    - fredapi
+    - pyyaml

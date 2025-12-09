@@ -1,0 +1,9 @@
+strategy_name: "spy_hedged_reversal"
+hedge_ticker: "SPY"
+betas_file: "betas_spy.parquet"   # in data/processed
+threshold: 0.02
+top_frac: 0.1
+bottom_frac: 0.1
+cost_bps: 5
+min_names: 10
+panel_name: "daily_excess_returns.parquet"

@@ -1,0 +1,7 @@
+data:
+  raw_dir: "src/data/raw"
+  processed_dir: "srcdata/processed"
+  bloomberg:
+    years: [2020, 2021, 2022, 2023, 2024, 2025]
+    pattern: "{year}0101_US_Port.xlsx"
+  panel_name: "daily_excess_returns.parquet"

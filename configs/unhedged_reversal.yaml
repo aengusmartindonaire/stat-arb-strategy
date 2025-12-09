@@ -1,0 +1,7 @@
+strategy_name: "unhedged_reversal"
+threshold: 0.02          # e.g. ±2% daily move triggers a trade
+top_frac: 0.1
+bottom_frac: 0.1
+cost_bps: 5
+min_names: 10
+panel_name: "daily_excess_returns.parquet"

@@ -1,0 +1,18 @@
+# Core numeric stack
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+
+# Parquet IO
+pyarrow>=14.0
+fastparquet>=2023.0.0
+
+# Data sources
+yfinance>=0.2.40
+fredapi>=0.5.0     
+
+# Config & misc
+pyyaml>=6.0
+
+# Dev / testing
+pytest>=7.0
