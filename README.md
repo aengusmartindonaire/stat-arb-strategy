@@ -138,12 +138,12 @@ While the daily reversal strategies (both unhedged and hedged) suffered from alp
 ---
 ## Data & Confidentiality
 
-This repository currently tracks the following data files:
+This repository used but currently does not track the following data files:
 
 - `src/data/raw/*.xlsx` – raw Bloomberg portfolio extracts  
 - `src/data/processed/*.parquet` – intermediate and backtest outputs
 
-However,
+This is due to the following:
 
 - Bloomberg data and many course datasets are subject to licensing and usage restrictions.
 - In many classes and research settings, **we are not allowed to publish raw Bloomberg files** in a public repository.
