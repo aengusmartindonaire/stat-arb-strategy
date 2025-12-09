@@ -149,7 +149,11 @@ However,
 - In many classes and research settings, **we are not allowed to publish raw Bloomberg files** in a public repository.
 - Even processed files (`.parquet`) may still contain information that should not be shared openly.
 
+<<<<<<< HEAD
 Thus, these are not included from this repository.
+=======
+Thus, these are removed from this repository
+>>>>>>> 659f6be (Updated README.md and 03_factor_hedged_strategies.ipynb files)
 
 ---
 
