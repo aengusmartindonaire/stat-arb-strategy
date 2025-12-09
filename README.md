@@ -131,7 +131,7 @@ The following performance metrics cover the backtest period from **Jan 2016 to D
 | **SPY-Hedged Reversal** | 0.0129  |   53.2%     |      -97.5%       |    -0.88     |    -99.5%    |
 | **SPY-Hedged Momentum** | **0.0168** | **56.7%** | **+721.8%**      |  **0.48**    |  **-39.1%**  |
 
-Source: `04_performance_analysis.ipynb`.
+Source: [`04_performance_analysis.ipynb`](https://github.com/aengusmartindonaire/stat-arb-strategy/blob/main/notebooks/04_performance_analysis.ipynb).
 
 ### Analysis
 
@@ -160,7 +160,7 @@ or
   conda activate stat-arb-strategy
   python -m ipykernel install --user --name stat-arb-strategy
 ```
-
+---
 ## Acknowledgement
 
 Thanks to Dr. Low for the instructions and dataset.
