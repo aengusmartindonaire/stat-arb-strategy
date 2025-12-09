@@ -22,13 +22,11 @@ The current implementation benchmarks three distinct strategies over a 10-year h
 The core logic is encapsulated in the `src/stat_arb` package, keeping research notebooks lightweight and reproducible.
 
 ```text
-.
 ├── README.md
 ├── configs
 │   ├── factor_hedged.yaml
 │   ├── paths.yaml
 │   └── unhedged_reversal.yaml
-├── directory.txt
 ├── environment.yml
 ├── notebooks
 │   ├── 01_data_processing.ipynb
@@ -151,7 +149,7 @@ However,
 - In many classes and research settings, **we are not allowed to publish raw Bloomberg files** in a public repository.
 - Even processed files (`.parquet`) may still contain information that should not be shared openly.
 
-Thus, these are removed from this repository
+Thus, these are not included from this repository.
 
 ---
 
