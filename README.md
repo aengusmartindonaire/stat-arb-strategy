@@ -1,6 +1,6 @@
 # Statistical Arbitrage Strategy Framework
 
-![Status](https://img.shields.io/badge/Status-Completed-blue)
+![Status](https://img.shields.io/badge/Status-Incomplete-red)
 ![Python](https://img.shields.io/badge/Python-3.11-green)
 ![Focus](https://img.shields.io/badge/Focus-StatArb-orange)
 
