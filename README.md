@@ -64,19 +64,6 @@ The core logic is encapsulated in the `src/stat_arb` package, keeping research n
 │   │       └── 20250101_US_Port.xlsx
 │   └── stat_arb
 │       ├── __init__.py
-│       ├── __pycache__
-│       │   ├── __init__.cpython-311.pyc
-│       │   ├── __init__.cpython-38.pyc
-│       │   ├── backtest.cpython-311.pyc
-│       │   ├── config.cpython-311.pyc
-│       │   ├── config.cpython-38.pyc
-│       │   ├── data_pipeline.cpython-311.pyc
-│       │   ├── data_pipeline.cpython-38.pyc
-│       │   ├── factors.cpython-311.pyc
-│       │   ├── performance.cpython-311.pyc
-│       │   ├── plotting.cpython-311.pyc
-│       │   ├── strategies.cpython-311.pyc
-│       │   └── utils.cpython-311.pyc
 │       ├── backtest.py
 │       ├── config.py
 │       ├── data_pipeline.py
@@ -149,7 +136,7 @@ This is due to the following:
 - In many classes and research settings, **we are not allowed to publish raw Bloomberg files** in a public repository.
 - Even processed files (`.parquet`) may still contain information that should not be shared openly.
 
-Thus, these are not included from this repository.
+Thus, these are not included in this repository.
 
 ---
 
