@@ -98,8 +98,10 @@ def main() -> None:
     out_dir = processed_dir / "unhedged_reversal"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    portfolio_returns.to_parquet(out_dir / "portfolio_returns.parquet")
-    ic_series.to_parquet(out_dir / "rank_ic.parquet")
+    # FIX: Convert Series to DataFrame before saving to parquet
+    # This avoids "AttributeError: 'Series' object has no attribute 'to_parquet'"
+    portfolio_returns.to_frame("ret").to_parquet(out_dir / "portfolio_returns.parquet")
+    ic_series.to_frame("ic").to_parquet(out_dir / "rank_ic.parquet")
     weights.to_parquet(out_dir / "weights.parquet")
 
     print("\nSaved portfolio_returns, rank_ic, and weights under:", out_dir)

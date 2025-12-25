@@ -1,6 +1,6 @@
 # Statistical Arbitrage Strategy Framework
 
-![Status](https://img.shields.io/badge/Status-InProgress-blue)
+![Status](https://img.shields.io/badge/Status-Completed-blue)
 ![Python](https://img.shields.io/badge/Python-3.11-green)
 ![Focus](https://img.shields.io/badge/Focus-StatArb-orange)
 
@@ -16,6 +16,16 @@ The current implementation benchmarks three distinct strategies over a 10-year h
 * **Factor Hedging Engine**: dynamic calculation of rolling betas against hedge instruments (e.g., SPY) to compute residual returns ($r_{hedged}$).
 * **Vectorized Backtester**: High-performance execution using `pandas`/`numpy` for signal generation and rank-based portfolio construction.
 * **Performance Analytics**: Automated calculation of Information Coefficients (Rank IC), Sharpe Ratios, and Drawdowns.
+
+## Configuration
+
+Strategy parameters are decoupled from the source code and defined in `yaml` files within the `configs/` directory. This allows for easy experimentation without modifying the codebase:
+
+* **`configs/paths.yaml`**: Defines input/output directories and data filenames.
+* **Strategy Configs** (e.g., `unhedged_reversal.yaml`):
+    * `threshold`: The absolute return hurdle for trade entry (default: 0.02).
+    * `top_frac` / `bottom_frac`: Percentile of universe to trade.
+    * `lookback_window`: Rolling window for beta or momentum calculations.
 
 ## Repository Structure
 
@@ -76,9 +86,10 @@ The core logic is encapsulated in the `src/stat_arb` package, keeping research n
     ├── __init__.py
     ├── test_backtest.py
     ├── test_data_pipeline.py
-    └── test_performance.py
+    ├── test_performance.py
+    └── test_scripts_smoke.py  
 ```
----
+
 ## Strategies & Methodology
 
 ### 1. Unhedged Daily Reversal
@@ -104,8 +115,6 @@ A cross-sectional momentum strategy applied to residual (idiosyncratic) returns.
 - **Lookback**: 252 days (12 months) with a 21-day (1 month) lag to avoid short-term reversals.
 - **Ranking**: Long top decile / Short bottom decile of cumulative hedged returns.
 
----
-
 ## Performance Results
 
 The following performance metrics cover the backtest period from **Jan 2016 to Dec 2025**.
@@ -122,7 +131,9 @@ Source: [`04_performance_analysis.ipynb`](https://github.com/aengusmartindonaire
 
 While the daily reversal strategies (both unhedged and hedged) suffered from alpha decay and negative drift in this regime, the **Factor-Hedged Momentum** strategy demonstrated robust performance, generating a **721% cumulative return** with a positive Sharpe ratio of **0.48**.
 
----
+*Note:* Performance metrics assume 0bps transaction costs to isolate signal efficacy. Real-world implementation would require accounting for slippage and commission.
+
+
 ## Data & Confidentiality
 
 This repository used but currently does not track the following data files:
@@ -130,22 +141,19 @@ This repository used but currently does not track the following data files:
 - `src/data/raw/*.xlsx` – raw Bloomberg portfolio extracts  
 - `src/data/processed/*.parquet` – intermediate and backtest outputs
 
-This is due to the following:
+Please take note of the following: 
 
-- Bloomberg data and many course datasets are subject to licensing and usage restrictions.
-- In many classes and research settings, **we are not allowed to publish raw Bloomberg files** in a public repository.
-- Even processed files (`.parquet`) may still contain information that should not be shared openly.
+* **Universe Definition**: Uses Bloomberg annual portfolio extracts (`.xlsx`) to identify the constituent list for each year, ensuring survivorship bias is minimized by including delisted stocks.
+* **Market Data**: Daily adjusted close prices and risk-free rates are fetched dynamically using `yfinance` and FRED (Federal Reserve Economic Data).
+* **Confidentiality**: The raw Bloomberg Excel files are **not** included in this repository due to licensing restrictions. Users must provide their own universe files in `src/data/raw/` to replicate the full pipeline.
 
-Thus, these are not included in this repository.
-
----
 
 ## Getting Started
 
 ### Prerequisites
 
 - Python 3.11+
-- `pandas`, `numpy`, `matplotlib`, `pyarrow` (see `requirements.txt`)
+- Key Libraries: `pandas`, `numpy`, `yfinance` (data), `pyarrow` (storage), `matplotlib` (viz)
 
 ### Installation
 
@@ -161,8 +169,51 @@ or
   conda activate stat-arb-strategy
   python -m ipykernel install --user --name stat-arb-strategy
 ```
----
+
+### Usage & Workflow
+
+The framework is designed to be run sequentially. You can execute the pipeline via the command line scripts or explore interactively using the notebooks.
+
+### 1. Data Preparation
+First, generate the survivorship-bias-free data panel. This script ingests the raw Bloomberg universe files (Excel) and fetches daily adjusted close prices via `yfinance`.
+
+```bash
+python scripts/run_prepare_data.py
+```
+Output: `src/data/processed/daily_excess_returns.parquet`
+
+### 2. Run backtest 
+Execute the strategy backtests. These scripts load the processed data, generate signals, and compute performance metrics.
+```bash
+# Run baseline unhedged strategy
+python scripts/run_backtest_unhedged.py
+
+# Run SPY-hedged strategy (calculates rolling betas automatically)
+python scripts/run_backtest_hedged.py
+```
+
+### 3. Analysis
+Launch the Jupyter notebooks to visualize equity curves, IC decay, and turnover.
+
+```bash
+jupyter lab notebooks/04_performance_analysis.ipynb
+```
+
+### Testing
+
+This project includes a comprehensive test suite using `pytest` to validate data pipelines, financial calculations, and full integration.
+
+To run the full suite (including smoke tests for scripts):
+
+```bash
+# Add src and scripts to PYTHONPATH to ensure correct imports
+
+PYTHONPATH=src:scripts pytest tests
+```
+
+
+
 ## Acknowledgement
 
-Thanks to Dr. Low for the instructions and dataset.
+Thanks to Professor Low for the instruction materials, guidance, and dataset.
 

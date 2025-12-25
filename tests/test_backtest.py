@@ -3,7 +3,6 @@ import pandas as pd
 
 from stat_arb import backtest
 
-
 def test_compute_daily_weights_balanced_long_short():
     """
     For a simple signal with clear ranking, _compute_daily_weights should
